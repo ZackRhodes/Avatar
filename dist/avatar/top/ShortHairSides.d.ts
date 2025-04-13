@@ -1,10 +1,11 @@
 import * as React from 'react';
-export default class ShortHairSides extends React.Component {
+import { Props } from '../types';
+export default class ShortHairSides extends React.Component<Props> {
     static optionValue: string;
     private mask1;
     private mask2;
     private path1;
     private path2;
     private path3;
-    render(): JSX.Element;
+    render(): React.JSX.Element;
 }
