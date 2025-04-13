@@ -27,19 +27,20 @@ export default class Selector extends React.Component<Props> {
   }
 
   UNSAFE_componentWillMount () {
-    const { option, defaultOption } = this.props
-    const { optionContext } = this
-    const defaultValue = (
-      typeof defaultOption === 'string' ?
-      defaultOption : getComponentOptionValue(defaultOption)
-    )
-    optionContext.addStateChangeListener(this.optionContextUpdate)
-    optionContext.optionEnter(option.key)
-    const optionState = optionContext.getOptionState(option.key)
-    this.updateOptionValues()
-    if (optionState) {
-      optionContext.setDefaultValue(option.key, defaultValue)
-    }
+    // Disabled due to legacy crash on missing OptionContext
+    // const { option, defaultOption } = this.props
+    // const { optionContext } = this
+    // const defaultValue = (
+    //   typeof defaultOption === 'string' ?
+    //   defaultOption : getComponentOptionValue(defaultOption)
+    // )
+    // optionContext.addStateChangeListener(this.optionContextUpdate)
+    // optionContext.optionEnter(option.key)
+    // const optionState = optionContext.getOptionState(option.key)
+    // this.updateOptionValues()
+    // if (optionState) {
+    //   optionContext.setDefaultValue(option.key, defaultValue)
+    // }
   }
 
   UNSAFE_componentWillUpdate (nextProps: Props & { children?: React.ReactNode }) {
@@ -47,9 +48,9 @@ export default class Selector extends React.Component<Props> {
   }
 
   componentWillUnmount () {
-    this.optionContext.removeStateChangeListener(this.optionContextUpdate)
-    this.optionContext.optionExit(this.props.option.key)
-  }
+    // this.optionContext.removeStateChangeListener(this.optionContextUpdate)
+    // this.optionContext.optionExit(this.props.option.key)
+  }  
 
   render () {
     let result: React.ReactNode | null = null
