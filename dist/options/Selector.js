@@ -28,11 +28,7 @@ function getComponentOptionValue(component) {
 var Selector = /** @class */ (function (_super) {
     __extends(Selector, _super);
     function Selector() {
-        var _this = _super !== null && _super.apply(this, arguments) || this;
-        _this.optionContextUpdate = function () {
-            _this.forceUpdate();
-        };
-        return _this;
+        return _super !== null && _super.apply(this, arguments) || this;
     }
     Object.defineProperty(Selector.prototype, "optionContext", {
         get: function () {
@@ -42,24 +38,27 @@ var Selector = /** @class */ (function (_super) {
         configurable: true
     });
     Selector.prototype.UNSAFE_componentWillMount = function () {
-        var _a = this.props, option = _a.option, defaultOption = _a.defaultOption;
-        var optionContext = this.optionContext;
-        var defaultValue = (typeof defaultOption === 'string' ?
-            defaultOption : getComponentOptionValue(defaultOption));
-        optionContext.addStateChangeListener(this.optionContextUpdate);
-        optionContext.optionEnter(option.key);
-        var optionState = optionContext.getOptionState(option.key);
-        this.updateOptionValues();
-        if (optionState) {
-            optionContext.setDefaultValue(option.key, defaultValue);
-        }
+        // Disabled due to legacy crash on missing OptionContext
+        // const { option, defaultOption } = this.props
+        // const { optionContext } = this
+        // const defaultValue = (
+        //   typeof defaultOption === 'string' ?
+        //   defaultOption : getComponentOptionValue(defaultOption)
+        // )
+        // optionContext.addStateChangeListener(this.optionContextUpdate)
+        // optionContext.optionEnter(option.key)
+        // const optionState = optionContext.getOptionState(option.key)
+        // this.updateOptionValues()
+        // if (optionState) {
+        //   optionContext.setDefaultValue(option.key, defaultValue)
+        // }
     };
     Selector.prototype.UNSAFE_componentWillUpdate = function (nextProps) {
         this.updateOptionValues(nextProps);
     };
     Selector.prototype.componentWillUnmount = function () {
-        this.optionContext.removeStateChangeListener(this.optionContextUpdate);
-        this.optionContext.optionExit(this.props.option.key);
+        // this.optionContext.removeStateChangeListener(this.optionContextUpdate)
+        // this.optionContext.optionExit(this.props.option.key)
     };
     Selector.prototype.render = function () {
         var result = null;
